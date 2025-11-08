@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "maven"    # Сканирует Maven зависимости
+    directory: "/"                # Корневая папка проекта
+    schedule:
+      interval: "weekly"          # Проверка раз в неделю
+    groups:
+      security-updates:
+        patterns: ["*"]           # Все зависимости
+        update-types: ["patch"]   # Авто-обновления только патчей

@@ -1,0 +1,42 @@
+name: CI/CD Pipeline
+
+on:
+  push:                          # Запуск при Push в репу
+    branches: [ develop, master ]
+  pull_request:                  # И при создании PR
+    branches: [ develop, master ]
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest       # На виртуальной машине Ubuntu
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4  # Клонирует твой репозиторий
+
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Build and Test
+        run: mvn clean verify     # Собирает и запускает тесты
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run OWASP Dependency Check
+        uses: dependency-check/Dependency-Check@main
+        with:
+          project: 'calculator-app'
+          format: 'HTML'
+          args: >
+            --scan **/src
+            --format HTML
+            --format JSON
