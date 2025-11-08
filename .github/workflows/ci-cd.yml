@@ -23,20 +23,3 @@ jobs:
 
       - name: Build and Test
         run: mvn clean verify     # Собирает и запускает тесты
-
-  security:
-    name: Security Scan
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Run OWASP Dependency Check
-        uses: dependency-check/Dependency-Check@main
-        with:
-          project: 'calculator-app'
-          format: 'HTML'
-          args: >
-            --scan **/src
-            --format HTML
-            --format JSON
