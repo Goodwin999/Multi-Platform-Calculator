@@ -28,6 +28,8 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+        <sonar.organization>goodwin999</sonar.organization>
+        <sonar.projectKey>Goodwin999_Multi-Platform-Calculator</sonar.projectKey>
 	</properties>
 	<dependencies>
 		<dependency>

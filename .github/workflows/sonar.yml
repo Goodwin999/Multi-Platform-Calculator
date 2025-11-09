@@ -27,7 +27,7 @@ jobs:
         run: mvn clean compile  # Собираем проект для анализа
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
+        run: mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Автоматический токен GitHub
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Твой токен из Secrets
